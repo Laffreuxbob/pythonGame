@@ -1,46 +1,19 @@
 import pygame
 from math import pi
+from warrior import Warrior
+import configScreen as confS
 
-background_colour = (0, 0, 0)
+print("conf : ", confS)
 
-(width, height) = (300, 200)
-screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-screen.fill(background_colour)
+screen = pygame.display.set_mode((confS.width, confS.height), pygame.RESIZABLE)
+screen.fill(confS.background_colour)
 
 pygame.display.set_caption('xX_-G4M3R_0riGIin_Z0n3-_Xx')
 
 pygame.display.flip()
 running = True
 
-
-class Circle(object):
-    def __init__(self, x0, y0, R):
-        self.x0, self.y0, self.R = x0, y0, R
-
-    def area(self):
-        return pi * self.R ** 2
-
-    def circumference(self):
-        return 2 * pi * self.R
-
-    def draw(self):
-        head = pygame.draw.rect(screen, (255,255,0), pygame.Rect(self.x0, self.y0, 10, 10))
-        pygame.draw.rect(screen, (255,255,0), head)
-        pygame.display.flip()
-
-    def move(self, axis, direction):
-        if axis == "X":
-            setattr(self, 'x0', (self.x0 + direction * .05)%width)
-        if axis == "Y":
-            setattr(self, 'y0', (self.y0 + direction * .05)%height)
-
-        screen.fill(background_colour)
-        self.draw()
-
-        c1 = Circle(10, 10, 10)
-
-
-c1 = Circle(10,10,10)
+c1 = Warrior(10, 10, screen)
 
 while running:
     c1.draw()
